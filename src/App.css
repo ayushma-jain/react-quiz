@@ -19,10 +19,9 @@ body{
 }
 .progressBar {
   width: 350px;
-  height: 12px;
+  height: 36px;
   padding: 10px;
   background: #F4F3F6;
-  float: right;
   border-radius: 16px;
 }
 .progressBar div{
@@ -35,6 +34,9 @@ body{
   font-weight: 600;
   font-size: 24px; 
   line-height: 24px;
+}
+.optionDiv:has(.radio-check:checked){
+  background: #31CD63;
 }
 .quiz-question{
  
@@ -59,6 +61,23 @@ body{
   background: #F4F3F6;
   border-radius: 8px;
 }
+.float-left{
+  float: left!important;
+}
+.float-right{
+  float: right!important;
+}
+.right-btn{
+  position: relative;
+  bottom: 70px;
+  right: 20px;
+}
+.left-btn{
+  position: relative;
+  bottom: 70px;
+  left: 20px;
+}
+a{text-decoration: none;}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

@@ -12,35 +12,37 @@ class Option extends React.Component {
         this.state = {
             index : props.index,
             value : props.value,
-            label : props.label,
-            questionNo :props.questionNo
+            questionNo :props.questionNo,
+            onChangeValue:props.onChangeValue,
+            selectedValue:props.selectedValue
           };
           
     }
+   
     render(){
-        console.log(this.state);
-        const { value, questionNo,label} = this.state;
+    
+        const {index, value, questionNo,selectedValue} = this.props;
        
     
         const profitLoss = ((value.fmpLast - value.open)/value.fmpLast);
        
         const PLPurcent = (profitLoss*100).toFixed(2);
-        
+        console.log(index);
+        console.log(selectedValue);
         return (
-            <div className="optionDiv mt-3" key={`key_${label}_${questionNo}`}>
-            <Form.Check
+            <div className="optionDiv mt-3" key={`key_${index}_${questionNo}`}>
+            <Form.Check onChange={this.state.onChangeValue}
                 inline
-                label={`${label}`}
+                className='radio-check'
+                label={`${index}`}
+                value={`${index}`}
                 name={`group_${questionNo}`}
                 type="radio"
-                id={`option_${label}_${questionNo}`}
-            />{`${symbolName[value.symbol]}`} &nbsp;&nbsp; ₹ {`${value.open}`} ,&nbsp;&nbsp;<span style={{
-                color: Math.sign(PLPurcent) == "-1" ? "red" : "green"
-              }}> {Math.sign(PLPurcent) == "-1" ? '-' : '+'}{`${PLPurcent} %`}</span>
-            </div>
+                checked={selectedValue === index}
+                id={`option_${index}_${questionNo}`}
+            /><label htmlFor={`option_${index}_${questionNo}`}>{`${value}`}</label></div>
         )
     }
  
 }
-
 export default Option

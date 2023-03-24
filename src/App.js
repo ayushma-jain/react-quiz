@@ -1,24 +1,25 @@
 import react from "react";
+import {Route, BrowserRouter, Routes} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import { quizArray } from "./quizQuestion";
-import PredictQuestion from "./components/PredictQuestion";
-import { useState } from "react";
-function App() {
-  const [questionNo , setQuestionNo] =  useState(0);
-  const [questionData , setQuestionData] =  useState(quizArray[0]);
-  const  rerenderParentCallback = (questionNo) => {
-    setQuestionNo(questionNo+1)
-   
-    setQuestionData(quizArray[questionNo+1]);
 
-    console.log(questionNo);
-  }
+import { useState } from "react";
+import Quiz from "./components/Quiz";
+import Score from "./components/Score";
+import { QuizProvider } from "./context/QuizContext";
+function App() {
+
   return (
     <div className="App" >
-      <div className="container mt-3">
-        <PredictQuestion  questionNo={questionNo} questionData={questionData} />
-        <button className="w-100 btn btn-success btn-sm" type="submit" onClick={() => { rerenderParentCallback(questionNo) }} >Continue</button>
+      <div className="container mt-3 mb-5">
+        <QuizProvider>
+          <BrowserRouter>
+              <Routes>
+                <Route exact path="/" element={<Quiz/>} />
+                <Route exact path="/score" element={<Score/>} />
+            </Routes>
+          </BrowserRouter>
+        </QuizProvider>
       </div>
     </div>
   );
